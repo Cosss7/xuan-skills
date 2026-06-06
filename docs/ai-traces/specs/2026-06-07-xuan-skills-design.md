@@ -9,12 +9,14 @@ Combine two skill repositories (mattpocock/skills and obra/superpowers) into a s
 
 ## Upstream Sources
 
-Future sync should diff against these commits:
+Future sync should diff against these repository-level commits:
 
-| Repository | Remote | Commit SHA |
+| Repository | Remote | HEAD SHA |
 |---|---|---|
 | mattpocock/skills | `git@github.com:mattpocock/skills.git` | `aaf2453fbdfe7a15c07f11d861224f34ab4b53cb` |
 | obra/superpowers | `git@github.com:obra/superpowers.git` | `6fd4507659784c351abbd2bc264c7162cfd386dc` |
+
+Per-skill file-level commits are tracked in the Skill Inventory below.
 
 ## Naming Convention
 
@@ -77,60 +79,73 @@ No `plugin.json` — skills.sh CLI auto-discovers via `skills/<category>/<name>/
 
 ## Skill Inventory
 
+Each entry tracks: upstream source, last upstream commit touching the file, modification status, and a summary of changes made.
+
 ### Category: 01-foundation
 
-| Skill | Origin | Notes |
-|---|---|---|
-| `xuan-setup` | matt `setup-matt-pocock-skills` | Renamed. Seeds for issue-tracker, triage-labels, domain config. |
-| `xuan-write-a-skill` | matt `write-a-skill` | Lightweight structure. Not TDD-driven. |
+| xuan Skill | Source Repo | Source Skill | Source File Commit | Status | Changes |
+|---|---|---|---|---|---|
+| `xuan-setup` | mattpocock/skills | `setup-matt-pocock-skills` | `4369256` | modified | Renamed. Matt references stripped. Seeds (issue-tracker-*, triage-labels, domain) adapted. |
+| `xuan-write-a-skill` | mattpocock/skills | `write-a-skill` | `62f43a1` | as-is | Renamed only. Content unchanged. |
 
 ### Category: 02-design
 
-| Skill | Origin | Notes |
-|---|---|---|
-| `xuan-design` | **FUSION**: brainstorm + grill-with-docs | New design. See flow below. |
-| `xuan-grill-with-docs` | matt `grill-with-docs` | Preserved as-is. For pure terminology alignment. |
-| `xuan-grill-me` | matt `grill-me` | Preserved as-is. Non-code variant. |
-| `xuan-writing-plans` | superpowers `writing-plans` | Preserved as-is. |
-| `xuan-prototype` | matt `prototype` | Preserved as-is. |
+| xuan Skill | Source Repo | Source Skill | Source File Commit | Status | Changes |
+|---|---|---|---|---|---|
+| `xuan-design` | superpowers + matt | `brainstorming` + `grill-with-docs` | `3f80f1c` / `e74f006` | **new** | New skill. Combines brainstorming's 9-step process with grill-with-docs' terminology alignment and ADR creation. 5-phase flow. See Fusion Details. |
+| `xuan-grill-with-docs` | mattpocock/skills | `grill-with-docs` | `e74f006` | as-is | Content unchanged. Supporting files (ADR-FORMAT.md, CONTEXT-FORMAT.md) included. |
+| `xuan-grill-me` | mattpocock/skills | `grill-me` | `62f43a1` | as-is | Content unchanged. |
+| `xuan-writing-plans` | obra/superpowers | `writing-plans` | `f2cbfbe` | as-is | Content unchanged. Doc output path updated to `docs/ai-traces/plans/`. |
+| `xuan-prototype` | mattpocock/skills | `prototype` | `f304057` | as-is | Content unchanged. Supporting files (LOGIC.md, UI.md) included. |
 
 ### Category: 03-implement
 
-| Skill | Origin | Notes |
-|---|---|---|
-| `xuan-tdd` | **FUSION**: superpowers `test-driven-development` + matt `tdd` | Superpowers iron law + rationalization table + verification gates. Matt interface-design/mocking/tests/deep-modules/refactoring as supporting files. Tracer bullet 4-phase flow. |
-| `xuan-using-git-worktrees` | superpowers `using-git-worktrees` | As-is. |
-| `xuan-subagent-driven-development` | superpowers `subagent-driven-development` | As-is. |
-| `xuan-executing-plans` | superpowers `executing-plans` | As-is. |
-| `xuan-dispatching-parallel-agents` | superpowers `dispatching-parallel-agents` | As-is. |
+| xuan Skill | Source Repo | Source Skill | Source File Commit | Status | Changes |
+|---|---|---|---|---|---|
+| `xuan-tdd` | superpowers + matt | `test-driven-development` + `tdd` | `030a222` / `7afa86d` | **fused** | Superpowers SKILL.md content retained fully. Added: matt's 4-phase flow (Planning → Tracer Bullet → Incremental Loop → Refactor), tracer bullet philosophy. New supporting files: interface-design.md, mocking.md, tests.md, deep-modules.md, refactoring.md. |
+| `xuan-using-git-worktrees` | obra/superpowers | `using-git-worktrees` | `f2cbfbe` | as-is | Content unchanged. |
+| `xuan-subagent-driven-development` | obra/superpowers | `subagent-driven-development` | `f2cbfbe` | as-is | Content unchanged. |
+| `xuan-executing-plans` | obra/superpowers | `executing-plans` | `f2cbfbe` | as-is | Content unchanged. |
+| `xuan-dispatching-parallel-agents` | obra/superpowers | `dispatching-parallel-agents` | `9ccce3b` | as-is | Content unchanged. |
 
 ### Category: 04-quality
 
-| Skill | Origin | Notes |
-|---|---|---|
-| `xuan-requesting-code-review` | superpowers `requesting-code-review` | As-is. |
-| `xuan-receiving-code-review` | superpowers `receiving-code-review` | As-is. |
-| `xuan-verification-before-completion` | superpowers `verification-before-completion` | As-is. |
-| `xuan-finishing-a-development-branch` | superpowers `finishing-a-development-branch` | As-is. |
+| xuan Skill | Source Repo | Source Skill | Source File Commit | Status | Changes |
+|---|---|---|---|---|---|
+| `xuan-requesting-code-review` | obra/superpowers | `requesting-code-review` | `f2cbfbe` | as-is | Content unchanged. |
+| `xuan-receiving-code-review` | obra/superpowers | `receiving-code-review` | `1455ac0` | as-is | Content unchanged. |
+| `xuan-verification-before-completion` | obra/superpowers | `verification-before-completion` | `48410c7` | as-is | Content unchanged. |
+| `xuan-finishing-a-development-branch` | obra/superpowers | `finishing-a-development-branch` | `f2cbfbe` | as-is | Content unchanged. |
 
 ### Category: 05-maintain
 
-| Skill | Origin | Notes |
-|---|---|---|
-| `xuan-diagnose` | matt `diagnose` | As-is. 6-phase loop, HITL script. For fast feedback bugs. |
-| `xuan-systematic-debugging` | superpowers `systematic-debugging` | As-is. 4-phase + multi-layer tracing. For complex bugs. |
-| `xuan-improve-codebase-architecture` | matt `improve-codebase-architecture` | As-is. HTML report, deepening candidates. |
-| `xuan-triage` | matt `triage` | As-is. Issue state machine. |
-| `xuan-to-issues` | matt `to-issues` | As-is. Vertical-slice issue breakdown. |
-| `xuan-to-prd` | matt `to-prd` | As-is. |
-| `xuan-zoom-out` | matt `zoom-out` | As-is. One-paragraph skill. |
+| xuan Skill | Source Repo | Source Skill | Source File Commit | Status | Changes |
+|---|---|---|---|---|---|
+| `xuan-diagnose` | mattpocock/skills | `diagnose` | `7afa86d` | as-is | Content unchanged. HITL script included. |
+| `xuan-systematic-debugging` | obra/superpowers | `systematic-debugging` | `030a222` | as-is | Content unchanged. Supporting files (root-cause-tracing.md, defense-in-depth.md, condition-based-waiting.md) included. |
+| `xuan-improve-codebase-architecture` | mattpocock/skills | `improve-codebase-architecture` | `a36584e` | as-is | Content unchanged. Supporting files (LANGUAGE.md, DEEPENING.md, HTML-REPORT.md, INTERFACE-DESIGN.md) included. |
+| `xuan-triage` | mattpocock/skills | `triage` | `179a14e` | as-is | Content unchanged. Supporting files (AGENT-BRIEF.md, OUT-OF-SCOPE.md) included. |
+| `xuan-to-issues` | mattpocock/skills | `to-issues` | `ff3ee1d` | as-is | Content unchanged. |
+| `xuan-to-prd` | mattpocock/skills | `to-prd` | `aaf2453` | as-is | Content unchanged. |
+| `xuan-zoom-out` | mattpocock/skills | `zoom-out` | `7afa86d` | as-is | Content unchanged. |
 
 ### Category: 06-communicate
 
-| Skill | Origin | Notes |
+| xuan Skill | Source Repo | Source Skill | Source File Commit | Status | Changes |
+|---|---|---|---|---|---|
+| `xuan-caveman` | mattpocock/skills | `caveman` | `62f43a1` | as-is | Content unchanged. |
+| `xuan-handoff` | mattpocock/skills | `handoff` | `d54c497` | as-is | Content unchanged. |
+
+### Source Skills Not Ported
+
+| Source Repo | Source Skill | Reason |
 |---|---|---|
-| `xuan-caveman` | matt `caveman` | As-is. |
-| `xuan-handoff` | matt `handoff` | As-is. |
+| obra/superpowers | `using-superpowers` | Not needed. Skill discovery described in CONTEXT.md. |
+| obra/superpowers | `writing-skills` | Replaced by matt's lighter `write-a-skill`. |
+| mattpocock/skills | deprecated/* | Deprecated by upstream, not ported. |
+| mattpocock/skills | in-progress/* | Incomplete, not ported. |
+| mattpocock/skills | misc/* | Too niche / personal, not ported. |
+| mattpocock/skills | personal/* | Personal to Matt, not ported. |
 
 ## Fusion Details
 
@@ -205,14 +220,17 @@ Phase 5: 过渡
 
 **Removed:** None. All superpowers content preserved, only supplemented.
 
-## Remaining Decisions (not yet discussed)
+## Resolved Decisions (from grill session 2026-06-07)
 
-These were identified during grilling but deferred:
+1. `xuan-diagnose` vs `xuan-systematic-debugging` — both kept, **content untouched** from originals. Different use cases: diagnose for fast-feedback bugs, systematic-debugging for complex multi-layer investigations.
 
-1. `xuan-diagnose` vs `xuan-systematic-debugging` — both kept, but exact boundary/overlap resolution deferred
-2. `xuan-write-a-skill` — exact contents and whether to adopt any of writing-skills' TDD methodology
-3. CONTEXT.md for this repo — what domain terms need definition
-4. Release workflow — versioning, CHANGELOG, sync process from upstream
+2. `xuan-write-a-skill` — **matt `write-a-skill` only**, lightweight version. No superpowers TDD-driven methodology, no CSO, no anti-Rationalization table, no skill type classification.
+
+3. **CONTEXT.md** — created. Follows mattpocock-skills format (definition + Avoid + relationships + flagged ambiguities). Key terms: Skill, Spec, Plan, ADR, Tracer bullet, Triage, Deep module, Iron law.
+
+4. **Release workflow** — upstream commit tracking only (`auto-track` strategy). Repo created at `github.com/Cosss7/xuan-skills`, public. Published via `npx skills add Cosss7/xuan-skills`.
+
+5. **Doc path**: `docs/ai-traces/specs/` and `docs/ai-traces/plans/` (replaces superpowers' `docs/superpowers/`).
 
 ## Architecture Constraints
 
