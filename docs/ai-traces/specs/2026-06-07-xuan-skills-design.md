@@ -232,6 +232,8 @@ Phase 5: 过渡
 
 5. **Doc path**: `docs/ai-traces/specs/` and `docs/ai-traces/plans/` (replaces superpowers' `docs/superpowers/`).
 
+6. **Worktree isolation** — `xuan-using-git-worktrees` retained as optional tool skill, not required by any workflow. `xuan-subagent-driven-development` and `xuan-executing-plans` no longer list it as a required workflow skill. Users invoke manually when isolation is needed.
+
 ## Architecture Constraints
 
 - **Platform**: skills.sh. No plugin.json. Flat `SKILL.md` in category subdirectories.
