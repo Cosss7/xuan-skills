@@ -1,6 +1,6 @@
 # xuan-skills
 
-A curated collection of AI agent skills for Claude Code, combining discipline from [obra/superpowers](https://github.com/obra/superpowers) and engineering workflow from [mattpocock/skills](https://github.com/mattpocock/skills).
+A curated collection of AI agent skills, combining discipline from [obra/superpowers](https://github.com/obra/superpowers) and engineering workflow from [mattpocock/skills](https://github.com/mattpocock/skills). Compatible with any agent that supports SKILL.md (Claude Code, Cursor, Codex, Gemini, Zed, and others).
 
 ## Install
 
