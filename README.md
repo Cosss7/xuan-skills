@@ -25,9 +25,11 @@ skills/
 
 Skills are prefixed with `xuan-`. Each skill is a directory containing `SKILL.md` with YAML frontmatter and optional supporting files.
 
-## Upstream Tracking
+## Modification Tracking
 
-See [TRACKING.md](./TRACKING.md) for per-skill source, upstream commit, and modification history. Use this to sync changes from upstream repositories.
+Skills that are modified, fused, or newly created include a `CHANGELOG.md` in their skill directory documenting what changed and why. Skills copied as-is from upstream (rename only) do not have this file.
+
+See [TRACKING.md](./TRACKING.md) for a per-skill summary of source, upstream commit, and modification status. Use this to sync changes from upstream repositories.
 
 ## Conventions
 
