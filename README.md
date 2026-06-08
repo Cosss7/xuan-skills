@@ -35,4 +35,4 @@ See [TRACKING.md](./TRACKING.md) for a per-skill summary of source, upstream com
 
 - **REQUIRED SUB-SKILL:** Use `xuan-<name>` — when another skill must run first
 - **REQUIRED BACKGROUND:** You MUST understand `xuan-<name>` — prerequisite knowledge
-- Docs output: `docs/ai-traces/specs/`, `docs/ai-traces/plans/`, `docs/ai-traces/adr/`
+- Docs output: `docs/ai-trace/specs/`, `docs/ai-trace/plans/`, `docs/ai-trace/adr/`

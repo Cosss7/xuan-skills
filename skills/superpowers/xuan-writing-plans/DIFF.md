@@ -8,9 +8,9 @@
 
 ### Updated: Doc output path
 
-- `docs/superpowers/plans/` → `docs/ai-traces/plans/`
+- `docs/superpowers/plans/` → `docs/ai-trace/plans/`
 
-Consistent with xuan convention to use `docs/ai-traces/` instead of `docs/superpowers/`.
+Consistent with xuan convention to use `docs/ai-trace/` instead of `docs/superpowers/`.
 
 ### Updated: Cross-references
 

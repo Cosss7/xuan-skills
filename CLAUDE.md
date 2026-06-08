@@ -16,6 +16,6 @@ A curated collection of AI agent skills. Published via skills.sh.
 
 ## Doc Output
 
-- Specs: `docs/ai-traces/specs/`
-- Plans: `docs/ai-traces/plans/`
-- ADRs: `docs/ai-traces/adr/`
+- Specs: `docs/ai-trace/specs/`
+- Plans: `docs/ai-trace/plans/`
+- ADRs: `docs/ai-trace/adr/`

@@ -91,9 +91,9 @@ A curated collection of AI agent skills. Published via skills.sh.
 
 ## Doc Output
 
-- Specs: `docs/ai-traces/specs/`
-- Plans: `docs/ai-traces/plans/`
-- ADRs: `docs/ai-traces/adr/`
+- Specs: `docs/ai-trace/specs/`
+- Plans: `docs/ai-trace/plans/`
+- ADRs: `docs/ai-trace/adr/`
 ```
 
 - [ ] **Step 2: Commit**
@@ -173,7 +173,7 @@ Changes to make in SKILL.md:
 - Remove all references to "Matt Pocock" / "mattpocock"
 - Update repo references from `mattpocock/skills` to `Cosss7/xuan-skills`
 - Update skill names from `/setup-matt-pocock-skills` to `/xuan-setup`
-- Update doc paths from `docs/agents/` to `docs/ai-traces/` (or keep agents/? tbd)
+- Update doc paths from `docs/agents/` to `docs/ai-trace/` (or keep agents/? tbd)
 - Output config files still go to `docs/agents/` (project-level, not repo-level)
 
 - [ ] **Step 3: Commit**
@@ -278,7 +278,7 @@ cp ../superpowers/skills/writing-plans/SKILL.md "$SKILL_DIR/"
 
 Changes:
 - `name:` → `xuan-writing-plans`
-- Doc output path: `docs/superpowers/plans/` → `docs/ai-traces/plans/`
+- Doc output path: `docs/superpowers/plans/` → `docs/ai-trace/plans/`
 - `superpowers:using-git-worktrees` refs → `xuan-using-git-worktrees`
 - `superpowers:writing-plans` refs → `xuan-writing-plans`
 - `superpowers:subagent-driven-development` → `xuan-subagent-driven-development`
@@ -359,7 +359,7 @@ Turn fuzzy ideas into fully-formed specs through a disciplined 5-phase process. 
    - Hard to reverse
    - Surprising without context
    - Result of a real trade-off with genuine alternatives
-   - Use: `docs/ai-traces/adr/YYYY-MM-DD-title.md`
+   - Use: `docs/ai-trace/adr/YYYY-MM-DD-title.md`
 3. Update CONTEXT.md with any new resolved terms (not implementation details)
 
 ## Phase 4: Present Design + Approve
@@ -367,7 +367,7 @@ Turn fuzzy ideas into fully-formed specs through a disciplined 5-phase process. 
 1. Present design section by section. Scale each section to its complexity.
    - Cover: architecture, components, data flow, error handling, testing
 2. Ask after each section: "Does this look right?"
-3. After all sections are approved: write the spec to `docs/ai-traces/specs/YYYY-MM-DD-topic-design.md`
+3. After all sections are approved: write the spec to `docs/ai-trace/specs/YYYY-MM-DD-topic-design.md`
 4. **Spec self-review:**
    - Placeholder scan: any TBD, TODO, incomplete sections?
    - Internal consistency: do sections contradict each other?
@@ -577,7 +577,7 @@ Changes:
 - `name:` → `xuan-subagent-driven-development`
 - Remove `superpowers:using-git-worktrees` from Required workflow skills (worktree is optional, not required)
 - Update cross-refs: `superpowers:writing-plans` → `xuan-writing-plans`, `superpowers:test-driven-development` → `xuan-tdd`, `superpowers:requesting-code-review` → `xuan-requesting-code-review`, `superpowers:finishing-a-development-branch` → `xuan-finishing-a-development-branch`
-- Update `docs/superpowers/plans/` → `docs/ai-traces/plans/`
+- Update `docs/superpowers/plans/` → `docs/ai-trace/plans/`
 
 - [ ] **Step 3: Commit**
 

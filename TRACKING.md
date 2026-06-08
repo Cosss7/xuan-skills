@@ -15,7 +15,7 @@ Track every skill's source, upstream commit, and modification summary for future
 
 | Skill | Source | File Commit | Status | Changes Summary |
 |---|---|---|---|---|
-| xuan-writing-plans | `writing-plans` | `f2cbfbe` | modified | Doc path: `docs/superpowers/` → `docs/ai-traces/`. Cross-refs updated to `xuan-` prefix. |
+| xuan-writing-plans | `writing-plans` | `f2cbfbe` | modified | Doc path: `docs/superpowers/` → `docs/ai-trace/`. Cross-refs updated to `xuan-` prefix. |
 | xuan-using-git-worktrees | `using-git-worktrees` | `f2cbfbe` | modified | Paths: `~/.config/superpowers/` → `~/.config/xuan/`. Cross-refs updated. |
 | xuan-subagent-driven-development | `subagent-driven-development` | `f2cbfbe` | modified | Removed `using-git-worktrees` from required workflow skills. Cross-refs and paths updated. |
 | xuan-executing-plans | `executing-plans` | `f2cbfbe` | modified | Removed `using-git-worktrees` from required workflow skills. Cross-refs updated. |
@@ -69,5 +69,5 @@ Status: new       → no upstream sync needed
 Key changes to apply after overwriting an as-is skill:
 1. Update `name:` field in frontmatter to `xuan-` prefix
 2. Update any cross-references to use `xuan-` prefix
-3. Update doc paths (`docs/superpowers/` → `docs/ai-traces/`)
+3. Update doc paths (`docs/superpowers/` → `docs/ai-trace/`)
 4. Update config paths (`~/.config/superpowers/` → `~/.config/xuan/`)

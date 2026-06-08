@@ -56,7 +56,7 @@ v1 fused them into a 5-phase flow with grill behavior embedded as rules within p
         │
         ▼
  6. Present design (section by section, reference ADRs)
- 7. Write spec → docs/ai-traces/specs/
+ 7. Write spec → docs/ai-trace/specs/
  8. Spec self-review
  9. User reviews written spec
 10. Transition → xuan-writing-plans
@@ -69,7 +69,7 @@ v1 fused them into a 5-phase flow with grill behavior embedded as rules within p
 | Structure | 5 phases | 10-step checklist (brainstorming style) |
 | Grill behavior | Rules embedded in Phases 1-2 | Discrete sub-process node (step 5) |
 | Step 3 terminology alignment | Challenge + update CONTEXT inline | Left untouched — all grill in step 5 |
-| ADR path | `docs/ai-traces/adr/YYYY-MM-DD-title.md` | `docs/adr/0001-slug.md` (grill-with-docs style) |
+| ADR path | `docs/ai-trace/adr/YYYY-MM-DD-title.md` | `docs/adr/0001-slug.md` (grill-with-docs style) |
 | `<what-to-do>` | None | Grill-with-docs `<what-to-do>` verbatim in step 5 |
 | ADR-FORMAT.md | Missing | Added (from grill-with-docs) |
 | CONTEXT-FORMAT.md | Missing | Added (from grill-with-docs) |

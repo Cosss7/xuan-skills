@@ -29,7 +29,7 @@ Per-skill file-level commits are tracked in the Skill Inventory below.
 ```
 xuan-skills/
 ├── docs/
-│   └── ai-traces/
+│   └── ai-trace/
 │       └── specs/
 │           └── 2026-06-07-xuan-skills-design.md
 ├── skills/
@@ -95,7 +95,7 @@ Each entry tracks: upstream source, last upstream commit touching the file, modi
 | `xuan-design` | superpowers + matt | `brainstorming` + `grill-with-docs` | `3f80f1c` / `e74f006` | **new** | New skill. Combines brainstorming's 9-step process with grill-with-docs' terminology alignment and ADR creation. 5-phase flow. See Fusion Details. |
 | `xuan-grill-with-docs` | mattpocock/skills | `grill-with-docs` | `e74f006` | as-is | Content unchanged. Supporting files (ADR-FORMAT.md, CONTEXT-FORMAT.md) included. |
 | `xuan-grill-me` | mattpocock/skills | `grill-me` | `62f43a1` | as-is | Content unchanged. |
-| `xuan-writing-plans` | obra/superpowers | `writing-plans` | `f2cbfbe` | as-is | Content unchanged. Doc output path updated to `docs/ai-traces/plans/`. |
+| `xuan-writing-plans` | obra/superpowers | `writing-plans` | `f2cbfbe` | as-is | Content unchanged. Doc output path updated to `docs/ai-trace/plans/`. |
 | `xuan-prototype` | mattpocock/skills | `prototype` | `f304057` | as-is | Content unchanged. Supporting files (LOGIC.md, UI.md) included. |
 
 ### Category: 03-implement
@@ -207,7 +207,7 @@ Phase 5: 过渡
 - Testing Anti-Patterns reference
 - Final Rule
 - `testing-anti-patterns.md` supporting file
-- Doc output path: `docs/ai-traces/specs/` (specs), `docs/ai-traces/plans/` (plans)
+- Doc output path: `docs/ai-trace/specs/` (specs), `docs/ai-trace/plans/` (plans)
 
 **Matt content added:**
 - Phase 0: Planning (confirm API changes, identify deep modules, design for testability)
@@ -230,7 +230,7 @@ Phase 5: 过渡
 
 4. **Release workflow** — upstream commit tracking only (`auto-track` strategy). Repo created at `github.com/Cosss7/xuan-skills`, public. Published via `npx skills add Cosss7/xuan-skills`.
 
-5. **Doc path**: `docs/ai-traces/specs/` and `docs/ai-traces/plans/` (replaces superpowers' `docs/superpowers/`).
+5. **Doc path**: `docs/ai-trace/specs/` and `docs/ai-trace/plans/` (replaces superpowers' `docs/superpowers/`).
 
 6. **Worktree isolation** — `xuan-using-git-worktrees` retained as optional tool skill, not required by any workflow. `xuan-subagent-driven-development` and `xuan-executing-plans` no longer list it as a required workflow skill. Users invoke manually when isolation is needed.
 

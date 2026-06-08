@@ -11,15 +11,15 @@ A directory containing `SKILL.md` with YAML frontmatter (`name`, `description`) 
 _Avoid_: plugin, addon, extension
 
 **Spec**:
-A design document written during `xuan-design` (Phase 4). Captures all decisions reached during the design process. Saved to `docs/ai-traces/specs/`.
+A design document written during `xuan-design` (Phase 4). Captures all decisions reached during the design process. Saved to `docs/ai-trace/specs/`.
 _Avoid_: design doc, requirement doc
 
 **Plan**:
-An implementation plan produced by `xuan-writing-plans`, containing bite-sized tasks with exact file paths, code blocks, and commands. Each task is independently executable by an agent. Saved to `docs/ai-traces/plans/`.
+An implementation plan produced by `xuan-writing-plans`, containing bite-sized tasks with exact file paths, code blocks, and commands. Each task is independently executable by an agent. Saved to `docs/ai-trace/plans/`.
 _Avoid_: todo list, ticket breakdown
 
 **ADR**:
-Architecture Decision Record — a lightweight document capturing a hard-to-reverse, surprising, or trade-off-heavy decision. Created during `xuan-design` (Phase 3) or `xuan-grill-with-docs`. Saved to `docs/ai-traces/adr/`.
+Architecture Decision Record — a lightweight document capturing a hard-to-reverse, surprising, or trade-off-heavy decision. Created during `xuan-design` (Phase 3) or `xuan-grill-with-docs`. Saved to `docs/ai-trace/adr/`.
 _Avoid_: design doc, decision log (prefer ADR explicitly)
 
 **Tracer bullet**:

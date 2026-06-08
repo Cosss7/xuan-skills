@@ -23,7 +23,7 @@
 
 ### Updated: Paths
 
-- `docs/superpowers/plans/` → `docs/ai-traces/plans/`
+- `docs/superpowers/plans/` → `docs/ai-trace/plans/`
 - `~/.config/superpowers` → `~/.config/xuan`
 
 ### Updated: Frontmatter name
