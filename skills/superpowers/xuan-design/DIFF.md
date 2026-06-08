@@ -2,7 +2,7 @@
 
 ## Design Context
 
-This skill was created by combining two different approaches to upfront design from the upstream repositories, after a grill-with-docs session that analyzed their differences and decided on a fusion.
+This skill was created by combining two different approaches to upfront design from the upstream repositories. The initial fusion (v1) treated grill behavior as embedded rules within a 5-phase process. This was revised (v2) after identifying that the initial fusion lacked the concrete supporting files and entry instructions from grill-with-docs.
 
 ## Upstream Sources
 
@@ -20,96 +20,85 @@ This skill was created by combining two different approaches to upfront design f
 - Key trait: One question at a time, walk every decision branch until shared understanding
 - Output: Updated CONTEXT.md + ADRs in `docs/adr/`
 
-## Fusion Rationale
+## Fusion Rationale (v1, superseded)
 
 The two sources address different problems:
 - brainstorming explores **what to build** (requirements, scope, options)
 - grill-with-docs explores **how to think about it** (shared language, domain relationships, architecture decisions)
 
-A project needs both, and they were historically invoked separately. The fusion creates a single end-to-end design phase that:
-1. Starts with requirement exploration (brainstorming style)
-2. Aligns terminology iteratively as fuzzy terms emerge (grill style)
-3. Grills decision branches after narrowing options (grill style)
-4. Captures architecture decisions (grill style's ADR)
-5. Produces a spec and transitions to implementation (brainstorming style)
+v1 fused them into a 5-phase flow with grill behavior embedded as rules within phases. This approach failed to preserve grill-with-docs' structural elements: `<what-to-do>`, `ADR-FORMAT.md`, and `CONTEXT-FORMAT.md`. The grill behavior was diluted into rules scattered across phases, losing its distinct interaction pattern.
 
-## Key Design Decisions
+## Fusion Design (v2)
 
-### 1. Terminology alignment is iterative, not upfront
+**Approach:** Keep both source skills as intact as possible. brainstorming provides the overall flow (checklist); grill-with-docs is inserted as a discrete sub-process node.
 
-**Decision:** Don't check CONTEXT.md glossary at the start of the session. Instead, align terms when fuzzy language emerges during requirement discussion.
-
-**Why:** If the user says "I want to build an e-commerce system", we don't know if it's B2B/B2C, physical/digital, single/multi-tenant until we ask questions. Premium glossary alignment risks defining terms that don't apply.
-
-### 2. Grill happens on chosen branches, not all possible branches
-
-**Decision:** First present 2-3 approaches, let user pick, then grill the chosen direction. Not: grill every possible approach before narrowing.
-
-**Why:** "Grill all decision branches" is infinite — there's always another edge case. The termination condition is "user cannot clarify further or says 'enough'."
-
-### 3. ADR after decision confirmation, not mid-grilling
-
-**Decision:** Write ADR in Phase 3 (Solidify Decisions), after the user confirms an approach. Not while grilling is still in progress.
-
-**Why:** An ADR records a decision. Until the decision is confirmed, there's nothing to record. Mid-grilling ADRs get rewritten every time the user changes their mind.
-
-### 4. Design approval gate is inherited from brainstorming
-
-**Decision:** The hard gate ("no code before approved design") is retained from brainstorming. Phase 4 requires section-by-section user approval, then a written spec, then user review of the spec, before any implementation.
-
-**Why:** grill-with-docs had no such gate — it assumes decisions are captured during conversation. The brainstorming gate forces explicit sign-off, which prevents premature implementation.
-
-### 5. Phase 5 transitions to xuan-writing-plans
-
-**Decision:** After spec is approved, the skill hands off to `xuan-writing-plans` for implementation planning. Not to any other skill.
-
-**Why:** Consistent with brainstorming's original design. writing-plans decomposes the spec into bite-sized executable tasks.
-
-## Process Flow (Final)
+**Process Flow:**
 
 ```
-Phase 1: Explore + Clarify Requirements
-  - Explore project context (files, docs, commits, CONTEXT.md)
-  - Clarifying questions (one at a time)
-  - Terminology alignment (as fuzzy terms emerge)
-  - Visual companion offer (optional)
-
-Phase 2: Explore Approaches
-  - Propose 2-3 approaches with trade-offs + recommendation
-  - User picks
-  - Grill chosen branch(es) with concrete scenarios
-  - Stop when user cannot clarify further or says "enough"
-
-Phase 3: Solidify Decisions
-  - User confirms approach
-  - ADR (only when hard-to-reverse / surprising / real trade-off)
-  - Update CONTEXT.md with resolved terms
-
-Phase 4: Present Design + Approve
-  - Present design section by section
-  - User approves each section
-  - Write spec to docs/ai-traces/specs/
-  - Spec self-review (placeholders, consistency, scope, ambiguity)
-  - User reviews written spec
-  - User approves → proceed
-
-Phase 5: Transition
-  - Invoke xuan-writing-plans
+ 1. Explore project context
+ 2. Offer visual companion (optional)
+ 3. Ask clarifying questions (one at a time)
+ 4. Propose 2-3 approaches → user picks one
+        │
+        ▼
+ 5. ┌──────────────────────────────────────────────┐
+    │ Grill with docs (sub-process)                 │
+    │ • <what-to-do> — interview relentlessly        │
+    │ • Challenge against glossary                   │
+    │ • Sharpen fuzzy language                       │
+    │ • Stress-test with concrete scenarios          │
+    │ • Cross-reference with code                    │
+    │ • Update CONTEXT.md inline                     │
+    │ • Offer ADRs sparingly → docs/adr/0001-slug.md │
+    │ • One question at a time                       │
+    │ Exit: user confirms or says "enough"           │
+    └──────────────────────────────────────────────┘
+        │
+        ▼
+ 6. Present design (section by section, reference ADRs)
+ 7. Write spec → docs/ai-traces/specs/
+ 8. Spec self-review
+ 9. User reviews written spec
+10. Transition → xuan-writing-plans
 ```
 
-## Rejected Alternatives
+### Key changes from v1
 
-**Alternative: Keep brainstorming and grill-with-docs as separate skills**
-- Rejected because: Users would need to know which to invoke and when. A single design phase that covers both requirement exploration and terminology alignment is more cohesive.
+| Element | v1 (old) | v2 (new) |
+|---------|----------|----------|
+| Structure | 5 phases | 10-step checklist (brainstorming style) |
+| Grill behavior | Rules embedded in Phases 1-2 | Discrete sub-process node (step 5) |
+| Step 3 terminology alignment | Challenge + update CONTEXT inline | Left untouched — all grill in step 5 |
+| ADR path | `docs/ai-traces/adr/YYYY-MM-DD-title.md` | `docs/adr/0001-slug.md` (grill-with-docs style) |
+| `<what-to-do>` | None | Grill-with-docs `<what-to-do>` verbatim in step 5 |
+| ADR-FORMAT.md | Missing | Added (from grill-with-docs) |
+| CONTEXT-FORMAT.md | Missing | Added (from grill-with-docs) |
+| HARD-GATE | Inline rule in overview | `<HARD-GATE>` block (brainstorming style) |
+| Exceptions | Prototype + bug fixes | Removed (no exceptions in original brainstorming) |
 
-**Alternative: Name it "brainstorming" (original superpowers name)**
-- Rejected because: The fused skill includes significant grill behavior that "brainstorming" doesn't convey. The `xuan-design` name reflects its role as the design phase of the development lifecycle.
+### Supporting files retained from brainstorming
 
-**Alternative: Start with CONTEXT.md glossary check (grill style)**
-- Rejected because: Premature terminology alignment wastes effort when scope is unknown.
+- `visual-companion.md` — browser-based mockup/diagram companion (unchanged)
+- `spec-document-reviewer-prompt.md` — prompt template for spec review subagent (unchanged)
+- `scripts/` — server runtime for visual companion (unchanged)
 
 ## Cross-Reference Updates
 
-- References `xuan-writing-plans` for Phase 5 transition
-- References `xuan-prototype` as exception ("use xuan-prototype instead")
+- References `xuan-writing-plans` for step 10 transition
+- References `xuan-grill-with-docs` for step 5 grilling
 - No `superpowers:` cross-refs in original skill
+
+## Changes in v3
+
+| Element | v2 | v3 |
+|---------|-----|-----|
+| Grill content | Inline copy of grill-with-docs `<what-to-do>` + `<supporting-info>` (~80 lines) | Reference to invoke `xuan-grill-with-docs` skill |
+| Step 5 wording | "enter grill-with-docs mode" | "invoke xuan-grill-with-docs to stress-test decisions" |
+| Terminal state | `writing-plans` | `xuan-writing-plans` |
+| Step 10 transition | Invoke `writing-plans` | Invoke `xuan-writing-plans` |
+| Visual companion ref | `skills/brainstorming/visual-companion.md` | `visual-companion.md` |
+
+### Rationale
+
+- **Deduplication**: Removed 80-line inline copy of grill-with-docs content. The skill is now invoked independently, avoiding maintenance of duplicate content across two skills.
+- **Naming consistency**: All cross-references now use the `xuan-` prefix, matching project convention.
