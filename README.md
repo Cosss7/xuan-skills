@@ -7,11 +7,30 @@ A curated collection of AI agent skills, combining discipline from [obra/superpo
 ```bash
 npx skills add Cosss7/xuan-skills
 ```
+Or install all skills global:
+
+```bash
+npx skills add Cosss7/xuan-skills -g --skill '*'
+```
 
 Or install a specific skill:
 
 ```bash
 npx skills add Cosss7/xuan-skills --skill xuan-tdd
+```
+
+## Upgrade / Update
+
+```bash
+npx skills update -g 
+```
+
+## Remove / Uninstall
+
+interactive remove
+
+```bash
+npx skills remove -g
 ```
 
 ## Structure
