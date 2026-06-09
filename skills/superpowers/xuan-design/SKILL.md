@@ -5,9 +5,9 @@ description: manually invoke only.
 
 # xuan-design — Design Through Shared Understanding
 
-Create `task` or `to-do` according to Checklist.
-
 <HARD-GATE>
+You MUST create a task for each of these items and complete them in order for checklist
+
 Do NOT invoke any implementation skill, write any code, scaffold any project, or take any implementation action until you have presented a design and the user has approved it. This applies to EVERY project regardless of perceived simplicity.
 </HARD-GATE>
 
