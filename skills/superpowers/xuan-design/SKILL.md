@@ -85,6 +85,7 @@ Invoke `xuan-grill-with-docs` to stress-test the chosen approach. That skill wil
 
 - Write the validated design (spec) to `docs/ai-trace/specs/YYYY-MM-DD-<topic>-design.md`
   - (User preferences for spec location override this default)
+  - write full spec, not the summary
 - Commit the design document to git
 
 **Spec Self-Review:**
