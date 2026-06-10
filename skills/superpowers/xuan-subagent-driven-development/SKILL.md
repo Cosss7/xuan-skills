@@ -272,7 +272,7 @@ Done!
 - **xuan-finishing-a-development-branch** - Complete development after all tasks
 
 **Subagents should use:**
-- **xuan-tdd** - Subagents follow TDD for each task
+- **xuan-test-driven-development** - Subagents follow TDD for each task
 
 **Alternative workflow:**
 - **xuan-executing-plans** - Use for parallel session instead of same-session execution
