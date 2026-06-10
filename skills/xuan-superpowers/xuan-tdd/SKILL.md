@@ -3,6 +3,8 @@ name: xuan-tdd
 description: Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions "red-green-refactor", wants integration tests, or asks for test-first development.
 ---
 
+<xuan-tdd-skill>
+
 # Test-Driven Development
 
 ## Philosophy
@@ -107,3 +109,5 @@ After all tests pass, look for [refactor candidates](refactoring.md):
 [ ] Code is minimal for this test
 [ ] No speculative features added
 ```
+
+</xuan-tdd-skill>
