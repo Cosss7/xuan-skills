@@ -22,8 +22,8 @@ Execute plan by dispatching fresh subagent per task, with two-stage review after
 **HARD-GATE:** 
 - You MUST tell subagent invoke skill `xuan-tdd`
 - You MUST create checklist tracking the tasks in the plan doc
-- checklist last step is dispatch code reviewer subagent 把所有任务的修改当作一个整体 review
-- Each task MUST 遵循下面的 process , 不允许跳过任何 step
+- Checklist last step is dispatch code reviewer subagent to review all task changes as a whole
+- Each task MUST follow the process below. No step may be skipped
 
 </HARD-GATE>
 
@@ -33,31 +33,43 @@ Execute plan by dispatching fresh subagent per task, with two-stage review after
 
 **Step 1: Dispatch implementer subagent**
 
-将 plan doc 中的任务按顺序调用 subagent 完成, 给 subagent 的提示词包括: 任务所需的上下文 ,  plan doc 和 design doc 的路径，要求 subagent 必须遵守， subagent 必须调用 skill xuan-test-driven-development , 完成后提交代码
+Pick the next incomplete task from the plan doc in order and dispatch new implementer subagent to complete it. 
+
+The subagent prompt MUST include: 
+  - task context
+  - plan doc and design/spec doc paths
+  - MUST follow both docs
+  - invoke skill xuan-tdd
+  - commit code when done
 
 **Step 2: Answer subagent questions**
 
-如果 subagent 提问, 你应该回答并且提供相应的上下文
+If the subagent asks questions, answer them with the necessary context
 
-**Step 3: implementer subagent 开始工作**
+**Step 3: Implementer subagent starts working**
 
-等待 implementer subagent 完成分配的任务
+Wait for the implementer subagent to finish its task
 
 **Step 4: Dispatch spec reviewer subagent**
 
-给 spec reviewer subagent 的提示词包括: task 的完整内容, design/spec doc 的路径, 要求 subagent 检查任务的实现是否完全符合 design/spec doc, 是否遵循 tdd 要求, 测试覆盖的完善程度
+The spec reviewer subagent's prompt must include: 
+  - the complete task description
+  - the path to the design/spec doc
+  - MUST check: 
+    - (a) full compliance with the design/spec doc
+    - (b) adherence to TDD requirements
 
-If verification fails, 不能进行下一步，直到 let implementer subagent fix the spec gaps
+If verification fails, you MUST let implementer subagent fix the spec gaps before go to the next step
 
 **Step 5: Dispatch code quality reviewer subagent**
 
-Dispatch reviewer subagent [code quality reviewer subaget prompt template](./code-quality-reviewer-prompt.md)
+Dispatch reviewer subagent [code quality reviewer subagent prompt template](./code-quality-reviewer-prompt.md)
 
-If verification fails, 不能进行下一步，直到 let implementer subagent fix the spec gaps
+If verification fails,  you MUST let implementer subagent fixes the issues found before go to the next step
 
 **Step 6: Mark the task as complete**
 
-标记当前任务完成。如果还有未完成的任务， return to step 1 , 如果所有任务都完成，则结束 process
+Mark this task complete. If unfinished tasks remain, return to Step 1. Otherwise, the process is complete
 
 </process>
 
