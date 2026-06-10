@@ -1,6 +1,6 @@
 ---
 name: brainstorming
-description: "manually invoke only.."
+description: "manually invoke only."
 ---
 
 # Brainstorming Ideas Into Designs
