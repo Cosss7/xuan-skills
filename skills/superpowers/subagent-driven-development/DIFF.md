@@ -21,11 +21,6 @@
 - `superpowers:finishing-a-development-branch` → `finishing-a-development-branch`
 - `superpowers:verification-before-completion` → `verification-before-completion`
 
-### Updated: Paths
-
-- `docs/superpowers/plans/` → `docs/ai-trace/plans/`
-- `~/.config/superpowers` → `~/.config/xuan`
-
 ### Updated: Frontmatter name
 
 - `name: subagent-driven-development` → `name: subagent-driven-development`

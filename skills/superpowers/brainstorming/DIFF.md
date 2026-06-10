@@ -56,7 +56,7 @@ v1 fused them into a 5-phase flow with grill behavior embedded as rules within p
         │
         ▼
  6. Present design (section by section, reference ADRs)
- 7. Write spec → docs/ai-trace/specs/
+ 7. Write spec → docs/superpowers/specs/
  8. Spec self-review
  9. User reviews written spec
 10. Transition → writing-plans
