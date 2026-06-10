@@ -36,7 +36,7 @@ You MUST create a task for each of these items and complete them in order:
 
 </checklist>
 
-**The terminal state is invoking skill grill-with-docs.** Do NOT invoke any implementation skill. The ONLY skill you invoke after brainstorming is grill-with-docs.
+**The terminal state is invoking skill grill-with-docs.** Do NOT invoke any implementation skill. The ONLY skill you invoke after brainstorming is grill-with-docs. Mark checklist done before invoke skill.
 
 <supporting-info>
 
