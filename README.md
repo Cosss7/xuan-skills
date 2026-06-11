@@ -4,6 +4,8 @@ A curated collection of AI agent skills, combining discipline from [obra/superpo
 
 ## Install
 
+Skills with `xuan-` prefix is more powerful. Without the prefix is copy from others.
+
 ```bash
 npx skills@latest add Cosss7/xuan-skills
 ```
@@ -39,7 +41,8 @@ npx skills@latest remove -g
 skills/
 ├── superpowers/              (12 skills — from obra/superpowers)
 ├── mattpocock-engineering/   (7 skills — from mattpocock/skills engineering)
-└── mattpocock-productivity/  (4 skills — from mattpocock/skills productivity)
+├── mattpocock-productivity/  (4 skills — from mattpocock/skills productivity)
+└── xuan-superpowers/         (5 skills - xuan customed superpowers)
 ```
 
 Skills are prefixed with `xuan-`. Each skill is a directory containing `SKILL.md` with YAML frontmatter and optional supporting files.
