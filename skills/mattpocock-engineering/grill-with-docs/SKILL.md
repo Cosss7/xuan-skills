@@ -99,7 +99,7 @@ Do NOT invoke any implementation skill, write any code, scaffold any project, or
 
 <next-step>
 
-Invoke skill write-design if user approve.
+Ask user to invoke skill xuan-write-design.
 
 </next-step>
 

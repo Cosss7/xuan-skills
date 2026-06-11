@@ -117,4 +117,11 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 
 </plan-doc-template>
 
+## Next Step
+<next-step>
+
+Ask user to invoke skill xuan-subagent-driven-development. Mark checklist done before invoke the skill.
+
+</next-step>
+
 </xuan-split-tasks-skill>
