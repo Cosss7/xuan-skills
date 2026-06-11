@@ -78,7 +78,7 @@ Wait for the user's response. If they request changes, make them and re-run the 
 **Next Step:**
 <next-step>
 
-Ask user to invoke xuan-split-tasks. Mark checklist done before invoke the skill.
+Ask user to invoke skill xuan-split-tasks. Mark checklist done before invoke the skill.
 
 </next-step>
 
