@@ -9,11 +9,17 @@ description: Invoke by other skill or manually invoke only.
 
 Break a plan into independently-grabbable coding tasks using vertical slices (tracer bullets), write to plan doc.
 
-<process>
+<HARD-GATE>
+
+- You MUST create checklist tracking the process below
+- Quiz the user for each HITL slice task until all tasks become AFK
+- Vertical tracer bullet slice task
+
+</HARD-GATE>
 
 ## Process
 
-You MUST create a task or todo for each of these process and complete them in order for:
+<process>
 
 ### 1. Gather context
 
