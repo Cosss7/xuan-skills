@@ -120,7 +120,7 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 ## Next Step
 <next-step>
 
-Ask user to invoke skill xuan-subagent-driven-development. Mark checklist done before invoke the skill.
+Ask user confrim continue, then you invoke skill xuan-subagent-driven-development. Mark checklist done before invoke the skill.
 
 </next-step>
 
