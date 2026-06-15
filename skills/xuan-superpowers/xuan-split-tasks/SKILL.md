@@ -11,7 +11,7 @@ Break a plan into independently-grabbable coding tasks using vertical slices (tr
 
 <HARD-GATE>
 
-- You MUST create checklist tracking the process below
+- You MUST create checklist tracking each step of the process below
 - Quiz the user for each HITL slice task until all tasks become AFK
 - Vertical tracer bullet slice task
 
