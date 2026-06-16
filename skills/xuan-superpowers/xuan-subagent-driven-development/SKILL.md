@@ -20,12 +20,19 @@ Execute plan by dispatching fresh subagent per task, with two-stage review after
 <HARD-GATE>
 
 **HARD-GATE:** 
-- You MUST tell subagent invoke skill `xuan-tdd`
+- You MUST tell subagent invoke skill `xuan-tdd` not other test driven development skills
+- You MUST tell subagent **MUST follow** skill `xuan-tdd`
 - You MUST create checklist tracking the tasks in the plan doc
 - Checklist last step is dispatch code reviewer subagent to review all task changes as a whole
 - Each task MUST follow the process below. No step may be skipped
 
 </HARD-GATE>
+
+## Anti-Pattern
+
+**There is task for writing test so subagent can not follow `xuan-tdd`**: subagent only care about the task dispatched to it, MUST follow skill `xuan-tdd` in any case
+
+**Subagent call other test driven development skill**: subagent NEVER invoke other test driven development skill
 
 ## Process
 
