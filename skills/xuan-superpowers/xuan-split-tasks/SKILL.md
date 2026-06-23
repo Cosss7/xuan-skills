@@ -29,17 +29,17 @@ Work from whatever is already in the conversation context. If a spec or design d
 
 If you have not already explored the codebase, do so to understand the current state of the code. Tasks titles and descriptions should use the project's domain glossary vocabulary, and respect ADRs in the area you're touching.
 
+Look for opportunities to prefactor the code to make the implementation easier. "Make the change easy, then make the easy change."
+
 ### 3. Draft vertical slices
 
 Break the plan into **tracer bullet** tasks. Each task is a thin vertical slice that cuts through ALL integration layers end-to-end, NOT a horizontal slice of one layer.
-
-Slices may be 'HITL' or 'AFK'. HITL slices require human interaction, such as an architectural decision or a design review. AFK slices can be implemented and merged without human interaction. Prefer AFK over HITL where possible.
 
 <vertical-slice-rules>
 
 - Each slice delivers a narrow but COMPLETE path through every layer (schema, API, UI, tests)
 - A completed slice is demoable or verifiable on its own
-- Prefer many thin slices over few thick ones
+- Any prefactoring should be done first
 
 </vertical-slice-rules>
 
@@ -50,7 +50,7 @@ Present the proposed breakdown as a numbered list. For each slice, show:
 - **Title**: short descriptive name
 - **Type**: HITL / AFK
 - **Blocked by**: which other slices (if any) must complete first
-- **Description**: why-what-how
+- **User stories covered**: which user stories this addresses (if the source material has them)
 
 Ask the user:
 
@@ -61,49 +61,25 @@ Ask the user:
 
 Iterate until the user approves the breakdown.
 
-### 5. Write the tasks to plan doc
+### 5. Write the tasks to issues doc
 
-**Save all approved slice to plan doc:** `docs/ai-trace/plans/YYYY-MM-DD-<feature-name>.md`
-- (User preferences for plan location override this default)
+**Save all approved tasks to to the temporary directory of the user's OS** - not the current workspace
 - In dependency order (blockers first)
-- Use plan doc template below
+- All tasks in one file
+- Use the issues-doc-template below.
 
-### 6.Self-Review
+<issues-doc-template>
 
-After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
-
-**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
-
-**2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
-
-**3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
-
-**4. Temeplate:** All follow the template.
-
-**5. Task order:** In dependency order (blockers first)
-
-If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
-
-</process>
-
-## Plan doc template:
-
-<plan-doc-template>
-
-**Every plan MUST start with this header:**
+**Every issues doc MUST start with this header:**
 
 ```markdown
-# [Feature Name] Implementation Plan
+# [Feature Name] issues
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use xuan-subagent-driven-development to implement this plan task-by-task.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use skill `tdd` to implement this plan task-by-task.
 
-**Design/Spec:** [relative path reference to design doc or spec doc]
+**Design/Spec:** [relative path reference to design doc or spec doc or prd]
 
 **Goal:** [One sentence describing what this builds]
-
-**Architecture:** [2-3 sentences about approach]
-
-**Tech Stack:** [Key technologies/libraries]
 
 ---
 ```
@@ -119,15 +95,24 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 
 **how:**
 
-```
+</issues-doc-template>
 
-</plan-doc-template>
+### 6.Self-Review
 
-## Next Step
-<next-step>
+After writing the complete issues doc, look at the spec with fresh eyes and check the issues against it. This is a checklist you run yourself — not a subagent dispatch.
 
-**ASK** for user confirm, then you invoke skill xuan-subagent-driven-development. Mark checklist done before invoke the skill.
+**1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
 
-</next-step>
+**2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
+
+**3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
+
+**4. Temeplate:** All follow the template.
+
+**5. Task order:** In dependency order (blockers first)
+
+If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
+
+</process>
 
 </xuan-split-tasks-skill>

@@ -1,13 +1,13 @@
 ---
-name: xuan-subagent-driven-development
-description: Invoke by other skill or manually invoke only.
+name: xuan-implement
+description: User-invoked only.
 ---
 
-<xuan-subagent-driven-development-skill>
+<xuan-implement-skill>
 
-# xuan-subagent-driven-development
+# xuan-implement
 
-Execute plan by dispatching fresh subagent per task, with two-stage review after each: spec compliance review first, then code quality review.
+Execute plan by dispatching fresh subagent per task.
 
 **Why subagents:** You delegate tasks to specialized agents with isolated context. By precisely crafting their instructions and context, you ensure they stay focused and succeed at their task. They should never inherit your session's context or history — you construct exactly what they need. This also preserves your own context for coordination work.
 
@@ -15,22 +15,22 @@ Execute plan by dispatching fresh subagent per task, with two-stage review after
 
 **Continuous execution:** Do not pause to check in with your human partner between tasks. Execute all tasks from the plan without stopping. The only reasons to stop are: BLOCKED status you cannot resolve, ambiguity that genuinely prevents progress, or all tasks complete. "Should I continue?" prompts and progress summaries waste their time — they asked you to execute the plan, so execute it.
 
-**Context:** Work from whatever is already in the conversation context. If a plan doc has written before, follow it, declare the doc path to user.
+**Context:** Work from whatever is already in the conversation context. If a plan doc has written before, follow it, declare the doc path to user. Plan doc or issues doc.
 
 <HARD-GATE>
 
 **HARD-GATE:** 
-- You MUST tell subagent invoke skill `xuan-tdd` not other test driven development skills
-- You MUST tell subagent **MUST follow** skill `xuan-tdd`
+- You MUST tell subagent invoke skill `tdd` not other test driven development skills
+- You MUST tell subagent **MUST follow** skill `tdd`
 - You MUST create checklist tracking the tasks in the plan doc
-- Checklist last step is dispatch code reviewer subagent to review all task changes as a whole
+- Checklist last step is dispatch code reviewer subagent to use `/review` to review the work
 - Each task MUST follow the process below. No step may be skipped
 
 </HARD-GATE>
 
 ## Anti-Pattern
 
-**There is task for writing test so subagent can not follow `xuan-tdd`**: subagent only care about the task dispatched to it, MUST follow skill `xuan-tdd` in any case
+**There is task for writing test so subagent can not follow `tdd`**: subagent only care about the task dispatched to it, MUST follow skill `tdd` in any case
 
 **Subagent call other test driven development skill**: subagent NEVER invoke other test driven development skill
 
@@ -44,37 +44,30 @@ Pick the next incomplete task from the plan doc in order and dispatch new implem
 
 The subagent prompt MUST include: 
   - task context
-  - plan doc and design/spec doc paths
+  - plan doc and design/spec doc paths reference
   - MUST follow both docs
-  - invoke skill xuan-tdd
+  - invoke skill tdd
   - commit code when done
 
 **Step 2: Answer subagent questions**
 
 If the subagent asks questions, answer them with the necessary context
 
-**Step 3: Implementer subagent starts working**
+**Step 3: Dispatch reviewer subagent**
 
-Wait for the implementer subagent to finish its task
+Subagent review spec gaps and code quality.
 
-**Step 4: Dispatch spec reviewer subagent**
-
-The spec reviewer subagent's prompt must include: 
+MUST tell the reviewer subagent: 
   - the complete task description
-  - the path to the design/spec doc
+  - the design/spec doc, issues doc reference
   - MUST check: 
     - (a) full compliance with the design/spec doc
     - (b) adherence to TDD requirements
+  - use `/review` review code quality
 
-If verification fails, you MUST let implementer subagent fix the spec gaps before go to the next step
+If verification fails, you MUST let implementer subagent fix the spec gaps or code before go to the next step
 
-**Step 5: Dispatch code quality reviewer subagent**
-
-Dispatch reviewer subagent [code quality reviewer subagent prompt template](./code-quality-reviewer-prompt.md)
-
-If verification fails,  you MUST let implementer subagent fixes the issues found before go to the next step
-
-**Step 6: Mark the task as complete**
+**Step 4: Mark the task as complete**
 
 Mark this task complete. If unfinished tasks remain, return to Step 1. Otherwise, the process is complete
 
@@ -87,13 +80,11 @@ Mark this task complete. If unfinished tasks remain, return to Step 1. Otherwise
 - Skip reviews (spec compliance OR code quality)
 - Proceed with unfixed issues
 - Dispatch multiple implementation subagents in parallel (conflicts)
-- Make subagent read plan file (provide full text instead)
 - Skip scene-setting context (subagent needs to understand where task fits)
 - Ignore subagent questions (answer before letting them proceed)
 - Accept "close enough" on spec compliance (spec reviewer found issues = not done)
 - Skip review loops (reviewer found issues = implementer fixes = review again)
 - Let implementer self-review replace actual review (both are needed)
-- **Start code quality review before spec compliance is ✅** (wrong order)
 - Move to next task while either review has open issues
 
 **If subagent asks questions:**
@@ -111,4 +102,4 @@ Mark this task complete. If unfinished tasks remain, return to Step 1. Otherwise
 - Dispatch fix subagent with specific instructions
 - Don't try to fix manually (context pollution)
 
-</xuan-subagent-driven-development-skill>
+</xuan-implement-skill>
