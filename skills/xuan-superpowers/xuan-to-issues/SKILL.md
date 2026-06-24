@@ -57,6 +57,8 @@ Write issues in dependency order (blockers first) so you can reference real issu
 
 Implementation issues files are `docs/ai/prd/YYYY-MM-DD-<feature-slug>/issues/<NN>-<slug>.md`, numbered from `01`.
 
+Write `status: ready-for-agent` in front matter.
+
 <issue-template>
 ## Parent
 
