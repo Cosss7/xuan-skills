@@ -3,4 +3,4 @@ name: grill-with-docs
 description: User-invoked only.
 ---
 
-Run a `/grilling` session, using the `/domain-modeling` skill.
+Load both `/grilling` and `/domain-modeling` skills, run a grilling session.
