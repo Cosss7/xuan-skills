@@ -5,7 +5,7 @@ description: User-invoked only.
 
 Implement the work described by the user in the PRD or issues.
 
-Use /tdd where possible, at pre-agreed seams.
+**MUST** Use skill `/tdd` where possible, at pre-agreed seams.
 
 Run typechecking regularly, single test files regularly, and the full test suite once at the end.
 
