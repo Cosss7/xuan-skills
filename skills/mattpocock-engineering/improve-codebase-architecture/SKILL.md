@@ -1,6 +1,7 @@
 ---
 name: improve-codebase-architecture
 description: User-invoked only.
+disable-model-invocation: true
 ---
 
 # Improve Codebase Architecture
