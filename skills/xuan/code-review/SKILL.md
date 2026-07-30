@@ -1,22 +1,25 @@
 ---
 name: code-review
-description: Review the changes since a fixed point (commit, branch, tag, or merge-base) along three axes — Code Quality, Spec, and Requirements. Runs all applicable reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to "review since X".
+description: Review Git changes from a fixed point across Code Quality, Spec, and Requirements. Use for branch, PR, or work-in-progress reviews.
 ---
 
 <code-review-skill>
 
 Three-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
-- **Code Quality** — is the code clear, reliable, maintainable, testable, and free of significant code smells?
-- **Spec** — does the change respect existing repository constraints, and does it add any new ones?
-- **Requirements** — does the code completely implement the originating PRD, ticket, issue, or acceptance criteria?
+- **Code Quality** evaluates implementation **form** — is the code clear, reliable, maintainable, testable, and free of significant code smells?
+- **Spec** evaluates repository **contract** — does the change respect existing repository constraints, and does it add any new ones?
+- **Requirements** evaluates task **intent** — does the code completely implement the originating PRD, ticket, issue, or acceptance criteria?
 
 All three axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
 
 ## Terms
 
 - **Repository constraint** — an established rule or contract governing the system's behaviour or structure, including invariants, architecture, module boundaries, dependency directions, interfaces, compatibility contracts, domain models, and business rules. It may be documented explicitly or established consistently by existing code and tests.
+- **Violation** — a change that contradicts, replaces, weakens, removes, or otherwise invalidates an existing repository constraint.
 - **Spec Addition** — a new repository constraint introduced for a previously unspecified area, or a compatible extension covering an additional case without invalidating or changing an existing repository constraint.
+
+Classify an extension as a Spec Addition only when it preserves existing cases, does not contradict an existing repository constraint, and does not make previously conforming implementations or consumers non-conforming. Otherwise classify it as a Violation.
 
 ## Process
 
@@ -41,86 +44,49 @@ Look for the originating requirement, in this order:
 
 Look for repository guidance and stable coding practices relevant to readability, maintainability, testability, naming, abstraction, error handling, complexity, and design quality.
 
-Use these as evidence of code quality, not as repository constraints. Explicit repository constraints belong to the Spec axis.
+Use conventions about implementation form as heuristic evidence of Code Quality. Treat rules or stable patterns governing observable behaviour or permitted system structure as repository constraints under Spec.
 
 The Code Quality axis also reviews concrete correctness and reliability risks, such as potential crashes or resource leaks, even when no Spec or Requirement defines the affected behaviour.
 
 On top of whatever the repo documents, the Code Quality axis always carries the **smell baseline** below — a fixed set of Fowler code smells that applies even when a repo documents nothing. Two rules bind it:
 
-- **The repo overrides.** A documented repo standard always wins; where it endorses something the baseline would flag, suppress the smell.
-- **Always a judgement call.** Each smell is a labelled heuristic ("possible Feature Envy"), never a hard violation — and, like any standard here, skip anything tooling already enforces.
+- **The repo overrides.** Documented repository guidance always wins; where it endorses something the baseline would flag, suppress the smell.
+- **Always a judgement call.** Each smell is a labelled heuristic, never a hard violation; skip anything tooling already enforces.
 
-Each smell reads *what it is* → *how to fix*; match it against the diff:
+Apply this smell baseline:
 
-- **Mysterious Name** — a function, variable, or type whose name doesn't reveal what it does or holds. → rename it; if no honest name comes, the design's murky.
-- **Duplicated Code** — the same logic shape appears in more than one hunk or file in the change. → extract the shared shape, call it from both.
-- **Feature Envy** — a method that reaches into another object's data more than its own. → move the method onto the data it envies.
-- **Data Clumps** — the same few fields or params keep travelling together (a type wanting to be born). → bundle them into one type, pass that.
-- **Primitive Obsession** — a primitive or string standing in for a domain concept that deserves its own type. → give the concept its own small type.
-- **Repeated Switches** — the same `switch`/`if`-cascade on the same type recurs across the change. → replace with polymorphism, or one map both sites share.
-- **Shotgun Surgery** — one logical change forces scattered edits across many files in the diff. → gather what changes together into one module.
-- **Divergent Change** — one file or module is edited for several unrelated reasons. → split so each module changes for one reason.
-- **Speculative Generality** — abstraction, parameters, or hooks added for needs the requirements don't have. → delete it; inline back until a real need shows.
-- **Message Chains** — long `a.b().c().d()` navigation the caller shouldn't depend on. → hide the walk behind one method on the first object.
-- **Middle Man** — a class or function that mostly just delegates onward. → cut it, call the real target direct.
-- **Refused Bequest** — a subclass or implementer that ignores or overrides most of what it inherits. → drop the inheritance, use composition.
-- **Defensive Programming** — code guards a corner case that the originating requirement or ticket neither describes nor constrains, implicitly inventing behaviour outside the stated contract. → report the unrequested behaviour and ask for the contract to be clarified before preserving the guard.
+- **Mysterious Name** — a function, variable, or type whose name doesn't reveal what it does or holds.
+- **Duplicated Code** — changed code repeats logic within the diff or duplicates logic already present elsewhere in the codebase.
+- **Feature Envy** — code depends more on another module's data than its own.
+- **Data Clumps** — the same few fields or params keep travelling together (a type wanting to be born).
+- **Primitive Obsession** — a primitive or string standing in for a domain concept that deserves its own type.
+- **Repeated Switches** — the same `switch`/`if`-cascade on the same type recurs across the change.
+- **Shotgun Surgery** — one logical change forces scattered edits across many files in the diff.
+- **Divergent Change** — one file or module is edited for several unrelated reasons.
+- **Speculative Generality** — abstraction, parameters, or hooks added for needs that do not currently exist.
+- **Message Chains** — long `a.b().c().d()` navigation the caller shouldn't depend on.
+- **Middle Man** — a class or function that mostly just delegates onward.
+- **Refused Bequest** — a subclass or implementer that ignores or overrides most of what it inherits.
+- **Overly Defensive Code** — redundant guards, fallbacks, or exception handling protect against states already excluded by types, validation, or established invariants; for example, rechecking for null after a validated non-null boundary.
 
 ### 4. Identify the spec sources
 
 Look for evidence of the repository's existing constraints in `specs/`, `CONTEXT-MAP.md`, `CONTEXT.md`, glossaries, ADRs, architecture and module documentation, interface definitions, schemas, business-rule documentation, and relevant existing code or tests.
 
-Treat stable behaviour and patterns in existing code and tests as repository constraints even when they are not documented separately. Do not invent constraints: every claimed violation or addition must cite its evidence.
-
-The Spec axis reports two categories separately:
-
-- **Violations** — changes that contradict, replace, weaken, remove, or otherwise invalidate an existing repository constraint.
-- **Additions** — Spec Additions introduced by the diff. Report these without presuming they are problems.
-
-Classify an extension as an Addition only when it preserves existing cases, does not contradict an existing repository constraint, and does not make previously conforming implementations or consumers non-conforming. Otherwise classify it as a Violation.
+Treat stable behavioural or structural patterns in existing code and tests as repository constraints even when they are not documented separately. Do not invent constraints: cite the evidence for every Violation and Spec Addition. Report the two categories separately, and do not presume a Spec Addition is a problem.
 
 ### 5. Spawn the sub-agents in parallel
 
-Use the `general-purpose` subagent for each.
+Use a separate `general-purpose` sub-agent for each axis. Give each the diff command, commit list, relevant sources and terms, and permission to inspect surrounding code. Require evidence for every finding, prohibit cross-axis review, and keep each finding concise.
 
-**Code Quality sub-agent prompt** — include:
+- **Code Quality** evaluates implementation **form** — include the sources and smell baseline from step 3. Report concrete reliability or maintainability problems and applicable smells; explain the consequence of each judgement call.
+- **Spec** evaluates repository **contract** — include the sources from step 4 and the Terms definitions. Report Violations and Spec Additions separately.
+- **Requirements** evaluates task **intent** — include the requirement source from step 2. Report missing, partial, or incorrect implementation and behaviour outside task intent, especially corner-case behaviour that the requirements neither request nor constrain; cite the requirement for each finding.
 
-- The full diff command and commit list.
-- The code quality sources found in step 3, **plus the smell baseline from step 3** pasted in full — the sub-agent has no other access to it.
-- The brief: "Report — per file/hunk where relevant — (a) concrete correctness or reliability risks; (b) clarity, maintainability, testability, abstraction, error-handling, or unnecessary-complexity problems; and (c) any baseline smell, naming it and quoting the hunk. Explain the concrete consequence of every judgement call. Treat smells as heuristics, skip anything tooling enforces, and do not assess Spec or Requirements conformance. Under 400 words."
-
-**Spec sub-agent prompt** — include:
-
-- The full diff command and commit list.
-- The spec sources found in step 4.
-- The definitions of **Repository constraint** and **Spec Addition**, plus the classification rule from step 4.
-- The brief: "Report Violations and Additions separately. Cite the evidence for every finding, including stable existing code or tests when they are the source. Do not invent constraints or treat Additions as inherently problematic. Do not assess Code Quality or Requirements fulfillment. Under 400 words."
-
-**Requirements sub-agent prompt** — include:
-
-- The full diff command and commit list.
-- The path or fetched contents of the PRD, ticket, issue, acceptance criteria, or spec.
-- The brief: "Report: (a) requirements that are missing or partial; (b) behaviour in the diff that wasn't asked for; (c) requirements that look implemented but where the implementation looks wrong; and (d) requirements that cannot be traced to implementation and relevant tests. Quote the requirement for each finding. Do not assess Code Quality or Spec conformance. Under 400 words."
-
-If the requirement source is missing, skip the Requirements sub-agent and report that this axis cannot be verified.
+The review is complete only when every changed file and hunk has been examined under every applicable axis, every finding cites evidence, and each axis reports findings, no findings, or an unverifiable status. Account for every stated requirement by tracing it to implementation and relevant tests or reporting it as missing, partial, or unverifiable.
 
 ### 6. Aggregate
 
-Present the three reports under `## Code Quality`, `## Spec`, and `## Requirements` headings, verbatim or lightly cleaned. Do **not** merge or rerank findings — the three axes are deliberately separate (see _Why three axes_).
-
-Under Spec, keep **Violations** and **Additions** separate. If the requirement source is missing, report that Requirements could not be verified; do not report it as passing.
-
-End with a one-line summary: total findings per axis, and the worst issue _within each axis_ (if any). Don't pick a single winner across axes — that's the reranking the separation exists to prevent.
-
-## Why three axes
-
-A change can pass one axis and fail another:
-
-- High-quality code can implement the wrong thing → **Code Quality pass, Requirements fail.**
-- Code can satisfy the ticket while violating an existing repository constraint → **Requirements pass, Spec fail.**
-- Code can satisfy both Spec and Requirements while still being difficult to maintain → **Spec and Requirements pass, Code Quality fail.**
-- A valid change can introduce a new repository constraint → report it as a Spec **Addition**, not automatically as a defect.
-
-Reporting them separately stops one axis from masking another.
+Present the reports under `## Code Quality`, `## Spec`, and `## Requirements`, with Violations and Spec Additions separate under Spec. Do not merge or rerank findings across axes. End with the finding count for each axis.
 
 </code-review-skill>
