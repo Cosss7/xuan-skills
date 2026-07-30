@@ -1,0 +1,4 @@
+interface:
+  display_name: "Decision Recording"
+  short_description: "Record consequential decisions as concise ADRs"
+  default_prompt: "Use $decision-recording to decide whether this settled choice needs an ADR and record it if warranted."
