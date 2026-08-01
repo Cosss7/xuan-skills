@@ -53,11 +53,10 @@ Not feature work — upkeep.
 
 ## Model-invoked disciplines underneath
 
-Three model-invoked disciplines run *beneath* the other skills. Reach for them directly when their responsibility is the problem, or let the skills above pull them in.
+Two model-invoked disciplines run *beneath* the other skills. Reach for them directly when their responsibility is the problem, or let the skills above pull them in.
 
-- **`/domain-language`** — sharpen the project's domain language: challenge a fuzzy term, resolve an overloaded word ("account" doing three jobs), and keep `CONTEXT.md` a clean glossary. It does not own ADRs.
+- **`/design-memory`** — preserve the project's shared design memory: challenge fuzzy or overloaded domain language, keep `CONTEXT.md` a clean glossary, and record consequential settled decisions as ADRs.
 - **`/codebase-design`** — the deep-module vocabulary (module, interface, depth, seam, adapter, leverage, locality) for designing a module's *shape*: a lot of behaviour behind a small interface at a clean seam. `/tdd` and `/improve-codebase-architecture` both speak it.
-- **`/decision-recording`** — decide whether a settled domain or architecture choice deserves an ADR, then create or update the record. It rejects easy-to-reverse, obvious, or trade-off-free choices.
 
 ## Crossing sessions
 

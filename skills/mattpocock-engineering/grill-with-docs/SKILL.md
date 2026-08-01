@@ -4,4 +4,4 @@ description: User-invoked only.
 disable-model-invocation: true
 ---
 
-Load both `/grilling` and `/domain-language`, then run a grilling session that uses `/domain-language` to challenge terminology and keep `CONTEXT.md` current. Whenever a consequential decision crystallizes, invoke `/decision-recording` to decide whether it warrants an ADR and record it when qualified.
+Load both `/grilling` and `/design-memory`, then run a grilling session that uses `/design-memory` to challenge terminology, keep `CONTEXT.md` current, and evaluate consequential settled decisions for ADRs.

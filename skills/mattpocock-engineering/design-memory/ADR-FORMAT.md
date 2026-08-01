@@ -1,10 +1,10 @@
 # ADR Format
 
-Follow repository-local agent instructions when they define an ADR location. Otherwise, system-wide ADRs live in `docs/adr/`; in a multi-context repo, context-specific ADRs live under that context's `docs/adr/`.
+Follow repository-local instructions when they define an ADR location. Otherwise, system-wide ADRs live in `docs/adr/`; in a multi-context repository, context-specific ADRs live under that context's `docs/adr/`.
 
 Use sequential numbering within the selected directory: `0001-slug.md`, `0002-postgres-for-write-model.md`, etc.
 
-Create the selected ADR directory lazily — only when the first ADR is needed there.
+Create the selected ADR directory lazily, only when the first ADR is needed there.
 
 ## Template
 
@@ -14,13 +14,13 @@ Create the selected ADR directory lazily — only when the first ADR is needed t
 {1-3 sentences: what's the context, what did we decide, and why.}
 ```
 
-That's it. An ADR can be a single paragraph. The value is in recording *that* a decision was made and *why* — not in filling out sections.
+That's it. An ADR can be a single paragraph. The value is in recording *that* a decision was made and *why*, not in filling out sections.
 
 ## Optional sections
 
 Only include these when they add genuine value. Most ADRs won't need them.
 
-- **Status** frontmatter (`proposed | accepted | deprecated | superseded by ADR-NNNN`) — useful when decisions are revisited
+- **Status** frontmatter (`accepted | deprecated | superseded by ADR-NNNN`) — useful when decisions are revisited
 - **Considered Options** — only when the rejected alternatives are worth remembering
 - **Consequences** — only when non-obvious downstream effects need to be called out
 

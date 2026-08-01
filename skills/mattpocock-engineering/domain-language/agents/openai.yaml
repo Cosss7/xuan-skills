@@ -1,4 +1,0 @@
-interface:
-  display_name: "Domain Language"
-  short_description: "Sharpen domain terms and maintain the glossary"
-  default_prompt: "Use $domain-language to clarify this project's domain terms and update its glossary."

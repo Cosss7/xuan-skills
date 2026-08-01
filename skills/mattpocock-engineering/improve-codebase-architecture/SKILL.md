@@ -58,9 +58,9 @@ Do NOT propose interfaces yet. After the file is written, ask the user: "Which o
 
 Once the user picks a candidate, run the `/grilling` skill to walk the design tree with them — constraints, dependencies, the shape of the deepened module, what sits behind the seam, what tests survive.
 
-Side effects happen inline as language and decisions crystallize — run `/domain-language` to keep the domain glossary current and `/decision-recording` to evaluate consequential settled choices:
+Side effects happen inline as language and decisions crystallize — run `/design-memory` to keep the domain glossary current and evaluate consequential settled choices:
 
 - **Naming a deepened module after a concept not in `CONTEXT.md`?** Add the term to `CONTEXT.md`. Create the file lazily if it doesn't exist.
 - **Sharpening a fuzzy term during the conversation?** Update `CONTEXT.md` right there.
-- **User rejects the candidate with a load-bearing reason?** Invoke `/decision-recording`. It will offer an ADR only when the reason is durable, surprising without context, and the result of a real trade-off; skip ephemeral reasons ("not worth it right now") and self-evident ones.
+- **User rejects the candidate with a load-bearing reason?** Invoke `/design-memory`. It will recommend an ADR only when the reason is durable, surprising without context, and the result of a real trade-off; skip ephemeral reasons ("not worth it right now") and self-evident ones.
 - **Want to explore alternative interfaces for the deepened module?** Run the `/codebase-design` skill and use its design-it-twice parallel sub-agent pattern.
