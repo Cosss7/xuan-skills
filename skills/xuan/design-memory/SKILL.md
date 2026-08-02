@@ -1,6 +1,6 @@
 ---
 name: design-memory
-description: Build and preserve a project's durable design memory by sharpening domain language in CONTEXT.md and recording consequential settled decisions as Architecture Decision Records. Use when terminology or conceptual boundaries need clarification, when the user asks to create, update, supersede, or assess an ADR, or when another design workflow needs to preserve language or rationale that has crystallized. Do not use merely to read existing project context.
+description: Sharpen and preserve a project's domain language in CONTEXT.md and consequential decisions in ADRs. Use when clarifying terminology or conceptual boundaries, or creating, updating, superseding, or assessing an ADR.
 ---
 
 # Design Memory
@@ -18,7 +18,7 @@ Most repositories have one context:
 └── src/
 ```
 
-If a root `CONTEXT-MAP.md` exists, the repository has multiple contexts. It points to each context and its documentation:
+If a root `CONTEXT-MAP.md` exists, the repository has multiple contexts. Read it to locate each context:
 
 ```text
 /
@@ -33,7 +33,9 @@ If a root `CONTEXT-MAP.md` exists, the repository has multiple contexts. It poin
         └── docs/adr/
 ```
 
-Follow repository-local instructions and existing conventions first. Otherwise, use a root `CONTEXT.md` and `docs/adr/`. Create files and directories lazily, only when settled knowledge needs recording.
+Follow repository-local instructions first. Otherwise, follow an established repository convention. If neither defines the layout, use a root `CONTEXT.md` and `docs/adr/`.
+
+Create the relevant `CONTEXT.md` when the first term is resolved. Create an ADR directory only when the first ADR qualifies and writing it is authorized.
 
 ## During the session
 
@@ -72,13 +74,13 @@ Keep `CONTEXT.md` free of implementation details. It is a glossary, not a spec, 
 
 Create a new ADR only when all three are true:
 
-1. Reversing the decision would have meaningful cost.
-2. A future reader could reasonably question or undo it without the rationale.
-3. Genuine alternatives were considered and rejected for specific reasons.
+1. **Hard to reverse** — changing the decision later would have meaningful cost.
+2. **Surprising without context** — a future reader could reasonably question or undo it without the rationale.
+3. **A real trade-off** — genuine alternatives were considered and one option was chosen for specific reasons.
 
-Otherwise, skip the ADR and briefly state where the knowledge belongs, if anywhere. Existing ADRs may be clarified without requalifying the original decision.
+Otherwise, skip the ADR and briefly state where the knowledge belongs, if anywhere. Clarifying an existing ADR does not require the decision to requalify, provided the decision itself remains unchanged.
 
-Read existing ADRs before writing. Do not duplicate an existing decision. Keep decisions that constrain multiple contexts system-wide; place context-specific decisions with that context. Update an ADR when its decision is unchanged, and supersede it when a new decision replaces it. Preserve and cross-link both records when repository conventions support it.
+Read relevant existing ADRs before writing. Do not duplicate an existing decision. Keep decisions that constrain multiple contexts system-wide; place context-specific decisions with that context. Clarify an ADR in place only when its decision remains unchanged and repository conventions permit edits. When a new decision replaces it, create a superseding ADR, preserve the old record, and cross-link them using the repository's status convention when one exists.
 
 Write an ADR only when the user requested it or the invoking workflow authorizes documentation changes. Otherwise, report that it qualifies and recommend recording it.
 
