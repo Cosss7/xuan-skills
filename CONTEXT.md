@@ -1,6 +1,6 @@
 # xuan-skills
 
-A curated collection of agent skills combining discipline from obra/superpowers and engineering workflow from mattpocock/skills. All skills are prefixed with `xuan-` and organized into lifecycle categories under `skills/`.
+A curated collection of agent skills combining discipline from obra/superpowers and engineering workflow from mattpocock/skills. Repository-owned skills may use the `xuan-` prefix, but it is not required for new or enhanced skills.
 
 Published via skills.sh. Installed with `npx skills add <owner>/xuan-skills`.
 

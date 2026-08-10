@@ -10,8 +10,8 @@ A curated collection of AI agent skills. Published via skills.sh.
 
 ## Cross-Referencing
 
-- **REQUIRED SUB-SKILL:** Use `xuan-<name>` — when another skill must run first
-- **REQUIRED BACKGROUND:** You MUST understand `xuan-<name>` — prerequisite knowledge
+- **REQUIRED SUB-SKILL:** Use `<skill-name>` — when another skill must run first
+- **REQUIRED BACKGROUND:** You MUST understand `<skill-name>` — prerequisite knowledge
 - Never use `@` force-load syntax (burns context)
 
 ## Doc Output

@@ -4,7 +4,7 @@ A curated collection of AI agent skills, combining discipline from [obra/superpo
 
 ## Install
 
-Skills with `xuan-` prefix is more powerful. Without the prefix is copy from others.
+Repository-owned skills may use the `xuan-` prefix. The prefix is optional for new or enhanced skills; upstream copies may keep their original names.
 
 ```bash
 npx skills@latest add Cosss7/xuan-skills
@@ -45,7 +45,7 @@ skills/
 └── xuan-superpowers/         (5 skills - xuan customed superpowers)
 ```
 
-Skills are prefixed with `xuan-`. Each skill is a directory containing `SKILL.md` with YAML frontmatter and optional supporting files.
+Skills may use the `xuan-` prefix, but it is not required. Each skill is a directory containing `SKILL.md` with YAML frontmatter and optional supporting files.
 
 ## Modification Tracking
 
@@ -55,6 +55,6 @@ See [TRACKING.md](./TRACKING.md) for a per-skill summary of source, upstream com
 
 ## Conventions
 
-- **REQUIRED SUB-SKILL:** Use `xuan-<name>` — when another skill must run first
-- **REQUIRED BACKGROUND:** You MUST understand `xuan-<name>` — prerequisite knowledge
+- **REQUIRED SUB-SKILL:** Use `<skill-name>` — when another skill must run first
+- **REQUIRED BACKGROUND:** You MUST understand `<skill-name>` — prerequisite knowledge
 - Docs output: `docs/ai-trace/specs/`, `docs/ai-trace/plans/`, `docs/ai-trace/adr/`

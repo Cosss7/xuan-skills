@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Memory"
+  short_description: "Preserve domain language and durable decisions"
+  default_prompt: "Use $design-memory to sharpen this project's domain language and record consequential settled decisions."
