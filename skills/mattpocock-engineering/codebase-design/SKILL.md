@@ -7,8 +7,6 @@ description: Shared vocabulary for designing deep modules. Use when the user wan
 
 Design **deep modules**: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface. Use this language and these principles wherever code is being designed or restructured. The aim is leverage for callers, locality for maintainers, and testability for everyone.
 
-When the design settles a consequential module shape, seam, integration pattern, or deliberate deviation that future work might otherwise undo, invoke `/design-memory` to decide whether the choice warrants an ADR.
-
 ## Glossary
 
 Use these terms exactly — don't substitute "component," "service," "API," or "boundary." Consistent language is the whole point.
