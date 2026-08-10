@@ -1,16 +1,26 @@
 ---
 name: grilling
-description: Grill the user relentlessly about a plan or design. Use when the user wants to stress-test a plan before building, or uses any 'grill' trigger phrases.
+description: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.
 ---
 
-Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions. For each question, provide your recommended answer and why.
+Interview the user relentlessly until you reach a shared understanding. Map this as a **design tree**: every decision branches into the decisions that hang off it.
 
-Ask related questions in a coherent batch, then wait for feedback before continuing. Do not start the next batch until every item in the current batch is explicitly resolved. Partial answers and newly discovered branches remain in the current batch; “continue” is not confirmation. Once the batch closes, proceed unless I pause or change topics.
+Work the tree in **rounds**. The **frontier** is every decision whose prerequisites are already settled — the questions you can ask _now_ without guessing at answers you haven't heard yet. Ask the whole frontier in one round: number each question and give your recommended answer and the reason for it. Then wait for the user's answers before the next round.
 
-If a *fact* can be found by exploring the codebase, look it up rather than asking me. The *decisions*, though, are mine — put each one to me and wait for my answer. Do not infer agreement from silence or partial answers.
+Each question should be formatted like so:
 
-When given a decision log path, create or maintain it throughout the session. If I request a decision log without a path, use `.scratch/<topic>-decisions.md`; otherwise create none. Before modifying an existing log, read it completely and preserve user edits.
+```
+❓ **Q1** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
 
-Record each branch's background, relevant facts, alternatives, your recommendation and reason, my decision and explicitly stated reason, status, and supersession. Never invent my reasons.
+➡️ <your recommended answer and reason>
+```
 
-Continue until every decision branch is resolved. Do not enact the plan until I confirm we have reached a shared understanding; then return control to the calling workflow.
+Each round the user answers reshapes the tree — settled decisions push the frontier outward and unblock questions that depended on them. Recompute the frontier and ask the next round. A question whose answer depends on another question still open in this round belongs to a _later_ round, not this one.
+
+Finding _facts_ is your job, never the user's. When a frontier question needs a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent to find it — don't ask the user for anything you could look up yourself. Don't block on it: a running exploration is an unsettled prerequisite, so only the questions downstream of it wait for the sub-agent to report — ask the rest of the frontier now. The _decisions_ are the user's — put each to them and wait.
+
+When given a decision log path, create or maintain it throughout the session. If the user requests a decision log without a path, use `.scratch/<topic>-decisions.md`; otherwise create none. Before modifying an existing log, read it completely and preserve user edits.
+
+For each branch, record its background, relevant facts, alternatives, your recommendation and reason, the user's decision and explicitly stated reason, status, and supersession. Keep your reasoning separate from the user's and never invent the user's reasons.
+
+The session is done when the frontier is empty: every branch of the design tree visited, nothing left silently assumed. Do not act on it until the user confirms you have reached a shared understanding.
