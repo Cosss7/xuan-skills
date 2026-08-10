@@ -1,0 +1,6 @@
+interface:
+  display_name: "Write Commit Message"
+  short_description: "Explain why and how in concise commit messages"
+  default_prompt: "Use $write-commit-message to draft a concise commit message for these changes."
+policy:
+  allow_implicit_invocation: true
