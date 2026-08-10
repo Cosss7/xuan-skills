@@ -1,6 +1,6 @@
 ---
 name: write-spec
-description: Turn investigated decisions into durable specs.
+description: User-invoked only. Turn investigated decisions into durable specs.
 disable-model-invocation: true
 ---
 

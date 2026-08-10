@@ -1,0 +1,6 @@
+interface:
+  display_name: "Wayfinder"
+  short_description: "Chart large uncertain work as local decision maps"
+  default_prompt: "Use $wayfinder to chart this large, uncertain effort and work through its decision map."
+policy:
+  allow_implicit_invocation: false
