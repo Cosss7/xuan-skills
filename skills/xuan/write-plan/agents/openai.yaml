@@ -1,0 +1,6 @@
+interface:
+  display_name: "Write Plan"
+  short_description: "Clarify goals, rationale, approach, and tasks"
+  default_prompt: "Use $write-plan to turn this objective into a clear implementation plan."
+policy:
+  allow_implicit_invocation: false
