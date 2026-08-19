@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prepare Kernel Patch Series"
+  short_description: "Shape changes into a bisectable Linux kernel patch series"
+  default_prompt: "Use $prepare-kernel-patch-series to organize these changes into a Linux kernel patch series."
