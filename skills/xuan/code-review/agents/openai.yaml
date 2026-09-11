@@ -1,3 +1,5 @@
 interface:
   display_name: "Code Review"
   short_description: "Review a diff on code quality, spec, and requirements"
+policy:
+  allow_implicit_invocation: false

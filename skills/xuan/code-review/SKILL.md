@@ -1,6 +1,7 @@
 ---
 name: code-review
-description: Review Git changes from a fixed point across Code Quality, Spec, and Requirements. Use for branch, PR, or work-in-progress reviews.
+description: Review Git changes from a fixed point across Code Quality, Spec, and Requirements. Use for branch, PR, or work-in-progress reviews. User invoke only.
+disable-model-invocation: true
 ---
 
 <code-review-skill>
